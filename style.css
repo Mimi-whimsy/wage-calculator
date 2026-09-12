@@ -1,0 +1,351 @@
+/* ===== Design tokens (dusty rose palette) ===== */
+:root {
+  --color-main: #D9A5A8;
+  --color-light-pink: #F5E8E6;
+  --color-cream: #FFF9F6;
+  --color-accent: #B97C80;
+  --color-bg: #F8ECEA;
+  --color-text: #4A4343;
+  --color-text-secondary: #8A7D7D;
+  --color-error: #C0392B;
+
+  --radius-card: 22px;
+  --radius-field: 14px;
+  --radius-button: 16px;
+  --shadow-card: 0 8px 24px rgba(185, 124, 128, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Layout ===== */
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+}
+
+/* ===== Title ===== */
+
+.title {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.title .icon {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.title h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 6px 0 0;
+  letter-spacing: -0.01em;
+}
+
+/* ===== Card ===== */
+
+.card {
+  background: var(--color-cream);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  margin-top: 18px;
+}
+
+.card h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ===== Hourly Wage input ===== */
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-light-pink);
+  border-radius: var(--radius-field);
+  padding: 12px 14px;
+}
+
+.currency {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-accent);
+}
+
+input[type="number"],
+input[type="time"] {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ===== Segmented control (Weekday / Weekend) ===== */
+
+.segmented {
+  display: flex;
+  background: var(--color-light-pink);
+  border-radius: var(--radius-field);
+  padding: 4px;
+  margin-bottom: 14px;
+}
+
+.segment {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 11px 0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.segment.active {
+  background: var(--color-main);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(185, 124, 128, 0.35);
+}
+
+/* ===== Hours / Minutes / Clock In / Clock Out fields ===== */
+
+.field-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.field input {
+  background: var(--color-light-pink);
+  border-radius: var(--radius-field);
+  padding: 12px;
+}
+
+.error-text {
+  color: var(--color-error);
+  font-size: 13px;
+  margin: 6px 0 0;
+}
+
+/* ===== Buttons ===== */
+
+.btn {
+  border: none;
+  border-radius: var(--radius-button);
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--color-main);
+  color: #ffffff;
+  margin-top: 12px;
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: var(--color-light-pink);
+  color: var(--color-accent);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ===== Result card ===== */
+
+.result-card {
+  text-align: center;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 0 0 4px;
+}
+
+.work-time {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.breakdown-row span:first-child {
+  flex: 0 0 62px;
+  text-align: left;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.breakdown-row span:nth-child(2) {
+  flex: 1;
+  text-align: left;
+  font-weight: 500;
+}
+
+.breakdown-row span:last-child {
+  font-weight: 600;
+}
+
+.salary-label {
+  margin-top: 6px;
+}
+
+.salary {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+/* ===== Action buttons ===== */
+
+.actions {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.copied-msg {
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: 500;
+  margin: -4px 0 0;
+}
+
+/* ===== Clear confirmation modal ===== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(74, 67, 67, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 10;
+}
+
+.modal {
+  background: var(--color-cream);
+  border-radius: 20px;
+  padding: 24px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.modal p {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 18px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-actions .btn {
+  padding: 12px;
+  font-size: 15px;
+}
+
+.btn-modal-cancel {
+  background: var(--color-light-pink);
+  color: var(--color-text);
+}
+
+.btn-modal-clear {
+  background: var(--color-error);
+  color: #ffffff;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ===== Focus visibility for keyboard users ===== */
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Wage Calculator</title>
+
+  <!-- Basic description -->
+  <meta name="description" content="A simple wage calculator for Manual Time and Work Schedule, with Weekday/Weekend overtime pay." />
+
+  <!-- PWA / Add to Home Screen support -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#D9A5A8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Wage Calc" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="app">
+
+    <!-- Title -->
+    <header class="title">
+      <div class="icon" aria-hidden="true">💗</div>
+      <h1>Wage Calculator</h1>
+    </header>
+
+    <!-- Hourly Wage Card -->
+    <section class="card" id="hourly-wage-card" aria-labelledby="hourlyWageHeading">
+      <h2 id="hourlyWageHeading">💰 Hourly Wage</h2>
+      <div class="input-row">
+        <span class="currency" aria-hidden="true">¥</span>
+        <input
+          type="number"
+          id="hourlyWageInput"
+          inputmode="numeric"
+          min="0"
+          value="1800"
+          aria-label="Hourly wage in yen"
+        />
+      </div>
+    </section>
+
+    <!-- Manual Time Card -->
+    <section class="card" id="manual-time-card" aria-labelledby="manualTimeHeading">
+      <h2 id="manualTimeHeading">⏱ Manual Time</h2>
+
+      <div class="segmented" id="manualDaySegment" role="radiogroup" aria-label="Day type for manual time">
+        <button type="button" class="segment active" data-value="weekday" role="radio" aria-checked="true">Weekday</button>
+        <button type="button" class="segment" data-value="weekend" role="radio" aria-checked="false">Weekend</button>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="hoursInput">Hours</label>
+          <input type="number" id="hoursInput" inputmode="numeric" min="0" placeholder="0" />
+        </div>
+        <div class="field">
+          <label for="minutesInput">Minutes</label>
+          <input type="number" id="minutesInput" inputmode="numeric" min="0" max="59" placeholder="0" />
+        </div>
+      </div>
+
+      <p class="error-text" id="minutesError" hidden></p>
+
+      <button type="button" class="btn btn-primary" id="calculateManualBtn">Calculate</button>
+    </section>
+
+    <!-- Work Schedule Card -->
+    <section class="card" id="work-schedule-card" aria-labelledby="workScheduleHeading">
+      <h2 id="workScheduleHeading">🕐 Work Schedule</h2>
+
+      <div class="segmented" id="scheduleDaySegment" role="radiogroup" aria-label="Day type for work schedule">
+        <button type="button" class="segment active" data-value="weekday" role="radio" aria-checked="true">Weekday</button>
+        <button type="button" class="segment" data-value="weekend" role="radio" aria-checked="false">Weekend</button>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="clockInInput">Clock In</label>
+          <input type="time" id="clockInInput" value="09:00" />
+        </div>
+        <div class="field">
+          <label for="clockOutInput">Clock Out</label>
+          <input type="time" id="clockOutInput" value="18:00" />
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary" id="calculateScheduleBtn">Calculate</button>
+    </section>
+
+    <!-- Result Card -->
+    <section class="card result-card" id="result-card" aria-live="polite">
+      <h2>✨ Result</h2>
+
+      <p class="label">Work Time</p>
+      <p class="work-time" id="resultWorkTime">0h 0m</p>
+
+      <div class="breakdown" id="breakdown" hidden>
+        <div class="breakdown-row">
+          <span>Regular</span>
+          <span id="regularHoursText">0h 0m</span>
+          <span id="regularPayText">¥0</span>
+        </div>
+        <div class="breakdown-row" id="overtimeRow" hidden>
+          <span>Overtime</span>
+          <span id="overtimeHoursText">0h 0m</span>
+          <span id="overtimePayText">¥0</span>
+        </div>
+      </div>
+
+      <p class="label salary-label">Salary</p>
+      <p class="salary" id="resultSalary">¥0</p>
+    </section>
+
+    <!-- Action Buttons -->
+    <div class="actions">
+      <button type="button" class="btn btn-accent" id="copyBtn" disabled>📋 Copy Result</button>
+      <p class="copied-msg" id="copiedMsg" hidden>Salary copied.</p>
+      <button type="button" class="btn btn-secondary" id="clearBtn">🗑 Clear</button>
+    </div>
+
+  </main>
+
+  <!-- Clear confirmation dialog -->
+  <div class="modal-overlay" id="clearModalOverlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Clear all inputs confirmation">
+      <p>Clear all inputs?</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-modal-cancel" id="cancelClearBtn">Cancel</button>
+        <button type="button" class="btn btn-modal-clear" id="confirmClearBtn">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
